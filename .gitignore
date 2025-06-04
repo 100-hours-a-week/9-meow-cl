@@ -1,0 +1,27 @@
+# Terraform 작업 디렉터리
+.terraform/
+.terraform.lock.hcl        # 잠금 파일(lock file)은 커밋하는 걸 권장하지만, 각자 환경에서 매번 재생성한다면 제외해도 됩니다.
+
+# Terraform 상태 파일
+*.tfstate
+*.tfstate.backup
+
+# Crash 로그 및 Plan 결과
+crash.log
+*.tfplan
+*.tfplan.out
+
+# 변수 파일 (.tfvars) – 비밀번호·시크릿 키 등 민감 정보 포함 시 제외
+*.tfvars
+!*.tfvars.example          # 샘플 변수 파일은 남겨두고, 실제 값을 담는 파일만 무시
+
+# Override 파일
+override.tf
+override.tf.json
+*_override.tf
+
+# 편의 스크립트나 IDE 설정 (필요에 따라)
+*.log                       # 일반 로그 파일
+*.swp                       # vim swap 파일
+.idea/                      # IntelliJ 계열 IDE 설정
+.vscode/                    # VS Code 설정
