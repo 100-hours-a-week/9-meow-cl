@@ -1,6 +1,6 @@
-output "database_arn" {
+output "database_name" {
     description = "ARN of the created Athena(Glue) database"
-    value = aws_athena_database.main.arn
+    value = aws_athena_database.main.name
 }
 
 output "workgroup_arn" {

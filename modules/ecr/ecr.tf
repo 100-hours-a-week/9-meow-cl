@@ -3,6 +3,8 @@ locals {
     repo_name = { for comp in var.components : "${var.service_name}/${comp}" => comp }
 }
 
+
+
 resource "aws_ecr_repository" "ecr_repository" {
     for_each = local.repo_name
     name = each.value
@@ -10,25 +12,37 @@ resource "aws_ecr_repository" "ecr_repository" {
     image_scanning_configuration {
         scan_on_push = var.image_scanning   
     }
-    dynamic "lifecycle_policy" {
-        for_each = var.lifecycle_rules_map[each.key]
-        content {
-            rule_priority = lifecycle_policy.value.rule_priority
-            selection {
-                tag_status = lifecycle_policy.value.selection.tag_status
-                count_type = lifecycle_policy.value.selection.count_type
-                count_number = lifecycle_policy.value.selection.count_number
-            }
-            action {
-                type = lifecycle_policy.value.action.type
-            }
-        }
-    }
     tags = {
         Stage = var.stage
         ServiceName = var.service_name
         Component = each.key
     }
+}
+
+##############################
+# 2) ECR Lifecycle Policy 생성
+##############################
+
+resource "aws_ecr_lifecycle_policy" "ecr_lifecycle_policy" {
+    for_each = {
+        for comp, rules in var.lifecycle_rules_map : comp => rules
+        if length(rules) > 0 
+    }
+    repository = aws_ecr_repository.ecr_repository[each.key].name
+    # Convert the lifecycle rules to JSON format
+    policy = jsonencode({
+        rules = [
+            for rule in each.value : {
+              rulePriority = rule.rule_priority
+              selection = {
+                tagStatus   = rule.selection.tag_status
+                countType   = rule.selection.count_type
+                countNumber = rule.selection.count_number
+              }
+              action = { type = rule.action.type }
+            }
+        ]
+    })
 }
 #example of calling this module
 /*

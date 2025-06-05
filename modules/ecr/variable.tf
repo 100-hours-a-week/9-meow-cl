@@ -29,7 +29,13 @@ variable "image_tag_mutability"{
 }
 
 variable "lifecycle_rules_map" {
-  description = "Map of lifecycle policy rules for ECR repository"
+  description = <<-EOT
+    Map for ECR component -> list of lifecycle rules.
+    Each rule object should include:
+    - rule_priority (number)
+    - selection (object with tag_status, count_type, count_number)
+    - action (object with type)
+    EOT
   type = map(list(object({
     rule_priority = number
     selection = object({
