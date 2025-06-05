@@ -20,7 +20,7 @@ resource "aws_ecr_repository" "ecr_repository" {
 }
 
 ##############################
-# 2) ECR Lifecycle Policy 생성
+# 2) Create ECR Lifecycle Policy 
 ##############################
 
 resource "aws_ecr_lifecycle_policy" "ecr_lifecycle_policy" {
