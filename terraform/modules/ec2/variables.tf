@@ -25,13 +25,13 @@ variable "instance_config" {
     ami           = string
     instance_type = string
   }))
-  default = {
-    0 = { ami = "ami-12345678", instance_type = "t2.micro" }  # OpenVPN
-    1 = { ami = "ami-23456789", instance_type = "t2.small" }  # Grafana
-    2 = { ami = "ami-34567890", instance_type = "t3.medium" } # Frontend
-    3 = { ami = "ami-45678901", instance_type = "t3.large" }  # Backend
-    4 = { ami = "ami-56789012", instance_type = "t3.xlarge" } # Database
-  }
+  # default = {
+  #   0 = { ami = "ami-12345678", instance_type = "t3.micro" }  # OpenVPN
+  #   1 = { ami = "ami-23456789", instance_type = "t3.small" }  # Grafana
+  #   2 = { ami = "ami-34567890", instance_type = "t3.medium" } # Frontend
+  #   3 = { ami = "ami-45678901", instance_type = "t3.medium" }  # Backend
+  #   4 = { ami = "ami-56789012", instance_type = "t3.medium" } # Database
+  # }
 }
 
 variable "subnet_mapping" {
