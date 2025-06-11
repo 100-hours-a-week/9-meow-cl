@@ -20,7 +20,7 @@ variable "igw_id" {
 }
 variable "nat_gateway_ids" {
     description = "NAT Gateway ID for private route table"
-    type = string
+    type = list(string)
     default = []
 }
 variable "tags" {

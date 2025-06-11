@@ -52,9 +52,9 @@ resource "aws_route" "private_nat" {
 # the second subnet with the second route table, and the third subnet with the first route table again.
 # Make sure private subnets are input in the same order as NAT gateways
 resource "aws_route_table_association" "private" {
-    count = length(var.private_subnet_ids)
-    subnet_id      = var.private_subnet_ids[count.index]
-    route_table_id = aws_route_table.private[each.key % length(aws_route_table.private)].id
+  for_each       = toset(var.private_subnet_ids)
+  subnet_id      = each.value
+  route_table_id = aws_route_table.private[each.key % length(aws_route_table.private)].id
 }
 
 /*
