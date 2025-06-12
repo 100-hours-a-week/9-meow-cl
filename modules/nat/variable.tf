@@ -18,7 +18,7 @@ variable "subnet_id" {
 }
 # when allocated_eip is true, a new Elastic IP address will be allocated for the NAT Gateway
 # when allocated_eip is false, the NAT Gateway will use an existing Elastic IP address
-variable "allocat_eip" {
+variable "allocate_eip" {
     description = "whether to allocate a new Elastic IP address for the NAT Gateway"
     type        = bool
     default     = true
