@@ -1,15 +1,43 @@
-variable "subnet_ids" {
-  description = "Subnets for the ALB"
+ variable "region" { 
+  description = "AWS region to deploy resources"
+  type        = string
+  default     = "ap-northeast-2" 
+}
+
+variable "stage" {
+  description = "Deployment stage (e.g., dev, stage, prod)"
+  type        = string
+  default     = "stage"
+}
+
+variable "service_name" {
+  description = "Name of the service being deployed"
+  type        = string
+  default     = "meowng"
+}
+
+variable "frontend_subnet_ids" {
+  description = "Subnets for the frontend ALB"
   type        = list(string)
 }
 
-variable "security_group_id" {
-  description = "Security group for the ALB"
+variable "backend_subnet_ids" {
+  description = "Subnets for the backend ALB"
+  type        = list(string)
+}
+
+variable "frontend_security_group_id" {
+  description = "Security group for the frontend ALB"
+  type        = string
+}
+
+variable "backend_security_group_id" {
+  description = "Security group for the backend ALB"
   type        = string
 }
 
 variable "vpc_id" {
-  description = "VPC ID for the ALB and target groups"
+  description = "VPC ID for the ALBs and target groups"
   type        = string
 }
 
@@ -25,23 +53,13 @@ variable "backend_port" {
   default     = 8080
 }
 
-variable "ai_port" {
-  description = "Port for the AI target group"
-  type        = number
-  default     = 8000
-}
-
 variable "name_prefix" {
-  description = "Prefix for resource names"
+  description = "Prefix for all resource names"
   type        = string
-}
-
-variable "common_tags" {
-  description = "Common tags for resources"
-  type        = map(string)
+  default = "alb-an2"
 }
 
 variable "certificate_arn" {
-  description = "ARN of the SSL certificate for HTTPS listener"
+  description = "ARN of the SSL certificate for HTTPS listeners"
   type        = string
 }
