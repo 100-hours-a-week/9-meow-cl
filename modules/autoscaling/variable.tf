@@ -8,7 +8,10 @@ variable "service_name" {
     type        = string
     default     = "meowng"
 }
-
+variable "app_name" {
+    description = "name of the application e.g. ferontend, backend"
+    type        = string
+}
 variable "launch_template_id" {
     description = "ID of the launch template to use for the autoscaling group"
     type        = string

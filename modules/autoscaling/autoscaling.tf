@@ -9,7 +9,7 @@ locals {
 # 1) Auto Scaling Group 생성
 ####################################################################
 resource "aws_autoscaling_group" "asg" {
-    name_prefix         = "${var.service_name}-${var.stage}-asg-"
+    name_prefix         = "asg-an2-${var.service_name}-${var.stage}-${var.app_name}"
     launch_template{
         id = var.launch_template_id
         version = var.launch_template_version

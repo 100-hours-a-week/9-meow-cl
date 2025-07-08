@@ -13,7 +13,7 @@ resource "aws_lb" "fe_alb" {
   internal           = false
   load_balancer_type = "application"
   subnets            = var.frontend_subnet_ids
-  security_groups    = [var.frontend_security_group_id]
+  security_groups    = [aws_security_group.sg_alb_fe.id]
 
   tags = merge(
     local.default_tags,
@@ -89,7 +89,7 @@ resource "aws_lb" "be_alb" {
   internal           = false
   load_balancer_type = "application"
   subnets            = var.backend_subnet_ids
-  security_groups    = [var.backend_security_group_id]
+  security_groups    = [aws_security_group.sg_alb_be.id]
 
   tags = merge(
     local.default_tags,

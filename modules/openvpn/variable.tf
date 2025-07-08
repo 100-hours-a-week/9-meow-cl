@@ -23,6 +23,7 @@ variable "subnet_id" {
 variable "ami_id" {
     description = "The ID of the AMI"
     type        = string
+    default = "ami-09a093fa2e3bfca5a"
 }
 
 variable "instance_type" {
@@ -46,5 +47,4 @@ variable "openvpn_tcp_port" {
 variable "key_name" {
   description = "name of the key pair for the instance"
   type        = string
-  default     = "keypair-meowng-master"
 }

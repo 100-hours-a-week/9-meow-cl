@@ -53,6 +53,18 @@ variable "backend_port" {
   default     = 8080
 }
 
+variable "db_port" {
+  description = "Port for the database target group"
+  type        = number
+  default     = 3306
+}
+
+variable "redis_port" {
+  description = "Port for the Redis target group"
+  type        = number
+  default     = 6379
+}
+
 variable "name_prefix" {
   description = "Prefix for all resource names"
   type        = string
