@@ -26,15 +26,15 @@ variable "backend_subnet_ids" {
   type        = list(string)
 }
 
-variable "frontend_security_group_id" {
-  description = "Security group for the frontend ALB"
-  type        = string
-}
+# variable "frontend_security_group_id" {
+#   description = "Security group for the frontend ALB"
+#   type        = string
+# }
 
-variable "backend_security_group_id" {
-  description = "Security group for the backend ALB"
-  type        = string
-}
+# variable "backend_security_group_id" {
+#   description = "Security group for the backend ALB"
+#   type        = string
+# }
 
 variable "vpc_id" {
   description = "VPC ID for the ALBs and target groups"
